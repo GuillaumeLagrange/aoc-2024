@@ -58,7 +58,7 @@ mod tests {
     use super::*;
 
     #[test]
-    fn sample1() {
+    fn example() {
         let example = "\
 3   4
 4   3
