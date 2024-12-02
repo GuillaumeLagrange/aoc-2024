@@ -1,0 +1,34 @@
+name: CodSpeed
+
+on:
+  push:
+    branches:
+      - "main"
+  pull_request:
+  # `workflow_dispatch` allows CodSpeed to trigger backtest
+  # performance analysis in order to generate initial data.
+  workflow_dispatch:
+
+jobs:
+  benchmarks:
+    name: Run benchmarks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup rust toolchain, cache and cargo-codspeed binary
+        uses: moonrepo/setup-rust@v1
+        with:
+          channel: stable
+          cache-target: release
+
+      # Install the custom aoc cli
+      - name: Install Binary from Git Path
+        run: |
+          cargo install --git https://github.com/GuillaumeLagrange/cargo-aoc cargo-aoc && cargo aoc --version
+
+      - name: Run the benchmarks
+        uses: CodSpeedHQ/action@v3
+        with:
+          run: cargo aoc bench
+          token: ${{ secrets.CODSPEED_TOKEN }}

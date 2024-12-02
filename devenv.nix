@@ -9,6 +9,7 @@
   # https://devenv.sh/packages/
   packages = with pkgs; [
     aoc-cli
+    cargo-codspeed
   ];
 
   # https://devenv.sh/languages/
