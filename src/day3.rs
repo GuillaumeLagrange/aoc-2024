@@ -10,7 +10,7 @@ static MUL_REGEX_PART_2: LazyLock<regex::Regex> =
     LazyLock::new(|| regex::Regex::new(r"do\(\)|don't\(\)|mul\(\d+,\d+\)").unwrap());
 
 #[aoc(day3, part1)]
-fn part1(input: &str) -> usize {
+pub fn part1(input: &str) -> usize {
     input
         .lines()
         .map(|line| {
@@ -30,7 +30,7 @@ fn part1(input: &str) -> usize {
 }
 
 #[aoc(day3, part2)]
-fn part2(input: &str) -> usize {
+pub fn part2(input: &str) -> usize {
     let mut enabled = true;
     input
         .lines()

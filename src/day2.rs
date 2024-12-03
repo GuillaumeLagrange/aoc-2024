@@ -1,7 +1,7 @@
 use aoc_runner_derive::aoc;
 
 #[aoc(day2, part1)]
-fn part1(input: &str) -> u32 {
+pub fn part1(input: &str) -> u32 {
     input
         .lines()
         .map(|line| {
@@ -42,56 +42,8 @@ fn part1(input: &str) -> u32 {
         .sum()
 }
 
-#[aoc(day2, part2, bruteforce)]
-fn part2_bruteforce(input: &str) -> u32 {
-    input
-        .lines()
-        .map(|line| {
-            let line_numbers = line
-                .split_whitespace()
-                .map(|n| n.parse::<u32>().unwrap())
-                .collect::<Vec<_>>();
-
-            for i in 0..line_numbers.len() {
-                let mut line_numbers = line_numbers.clone();
-                line_numbers.remove(i);
-
-                let mut line_numbers = line_numbers.into_iter().peekable();
-                let first = line_numbers.next().unwrap();
-                let second = line_numbers.peek().unwrap();
-
-                let increasing = first < *second;
-
-                let diff = second.abs_diff(first);
-                if !(1..4).contains(&diff) {
-                    continue;
-                }
-
-                while let Some(first) = line_numbers.next() {
-                    let Some(second) = line_numbers.peek() else {
-                        return 1;
-                    };
-
-                    match (increasing, first < *second) {
-                        (true, false) => break,
-                        (false, true) => break,
-                        _ => {}
-                    };
-
-                    let diff = second.abs_diff(first);
-                    if !(1..4).contains(&diff) {
-                        break;
-                    }
-                }
-            }
-
-            0
-        })
-        .sum()
-}
-
-#[aoc(day2, part2, smarter)]
-fn part2(input: &str) -> u32 {
+#[aoc(day2, part2)]
+pub fn part2(input: &str) -> u32 {
     input
         .lines()
         .map(|line| {
