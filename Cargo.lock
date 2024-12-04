@@ -9,6 +9,7 @@ dependencies = [
  "aoc-runner",
  "aoc-runner-derive",
  "codspeed-criterion-compat",
+ "colored",
  "itertools 0.13.0",
  "regex",
  "rust-crypto",
