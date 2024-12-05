@@ -1,5 +1,3 @@
-use aoc_runner_derive::aoc;
-
 fn parse_input(input: &str) -> Vec<Vec<char>> {
     input.lines().map(|line| line.chars().collect()).collect()
 }
@@ -52,7 +50,6 @@ fn explore(
     )
 }
 
-#[aoc(day4, part1)]
 pub fn part1(input: &str) -> usize {
     let input = parse_input(input);
     let mut count = 0;
@@ -88,7 +85,6 @@ pub fn part1(input: &str) -> usize {
     count
 }
 
-#[aoc(day4, part2)]
 pub fn part2(input: &str) -> usize {
     let input = parse_input(input);
     let mut count = 0;
@@ -136,5 +132,21 @@ MXMXAXMASX
 
         assert_eq!(part1(example), 18);
         assert_eq!(part2(example), 9);
+    }
+
+    #[test]
+    fn run_part1() {
+        let input = crate::utils::get_day_input!();
+        let output = part1(&input);
+        println!("Part 1: {}", output);
+        assert_eq!(output, 2378);
+    }
+
+    #[test]
+    fn run_part2() {
+        let input = crate::utils::get_day_input!();
+        let output = part2(&input);
+        println!("Part 2: {}", output);
+        assert_eq!(output, 1796);
     }
 }

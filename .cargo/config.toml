@@ -1,3 +1,3 @@
 [alias]
-bench = "aoc bench"
-input = "aoc input -g"
+# TODO: Make this get the current day
+today = ""

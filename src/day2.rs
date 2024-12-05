@@ -1,6 +1,3 @@
-use aoc_runner_derive::aoc;
-
-#[aoc(day2, part1)]
 pub fn part1(input: &str) -> u32 {
     input
         .lines()
@@ -42,7 +39,6 @@ pub fn part1(input: &str) -> u32 {
         .sum()
 }
 
-#[aoc(day2, part2)]
 pub fn part2(input: &str) -> u32 {
     input
         .lines()
@@ -121,5 +117,21 @@ mod tests {
 
         assert_eq!(part2(should_match), 1);
         assert_eq!(part2(should_not_match), 0);
+    }
+
+    #[test]
+    fn run_part1() {
+        let input = crate::utils::get_day_input!();
+        let output = part1(&input);
+        println!("Part 1: {}", output);
+        assert_eq!(output, 432);
+    }
+
+    #[test]
+    fn run_part2() {
+        let input = crate::utils::get_day_input!();
+        let output = part2(&input);
+        println!("Part 2: {}", output);
+        assert_eq!(output, 488);
     }
 }

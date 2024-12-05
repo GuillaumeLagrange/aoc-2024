@@ -1,10 +1,8 @@
 use std::collections::HashMap;
 
-#[aoc(day1, part1)]
 pub fn part1(input: &str) -> u32 {
     let mut first_list = Vec::new();
     let mut second_list = Vec::new();
-
     for line in input.lines() {
         let (first, second) = line.split_once("   ").unwrap();
         first_list.push(first.parse::<u32>().unwrap());
@@ -25,7 +23,6 @@ pub fn part1(input: &str) -> u32 {
         .sum()
 }
 
-#[aoc(day1, part2)]
 pub fn part2(input: &str) -> u32 {
     let mut first_list = Vec::new();
     let mut second_list: HashMap<u32, u32> = HashMap::new();
@@ -69,5 +66,21 @@ mod tests {
 ";
         assert_eq!(part1(example), 11);
         assert_eq!(part2(example), 31);
+    }
+
+    #[test]
+    fn run_part1() {
+        let input = crate::utils::get_day_input!();
+        let output = part1(&input);
+        println!("Part 1: {}", output);
+        assert_eq!(output, 936063);
+    }
+
+    #[test]
+    fn run_part2() {
+        let input = crate::utils::get_day_input!();
+        let output = part2(&input);
+        println!("Part 2: {}", output);
+        assert_eq!(output, 23150395);
     }
 }

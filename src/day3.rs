@@ -1,6 +1,4 @@
-use aoc_runner_derive::aoc;
 use regex;
-
 use std::sync::LazyLock;
 
 static MUL_REGEX_PART_1: LazyLock<regex::Regex> =
@@ -9,7 +7,6 @@ static MUL_REGEX_PART_1: LazyLock<regex::Regex> =
 static MUL_REGEX_PART_2: LazyLock<regex::Regex> =
     LazyLock::new(|| regex::Regex::new(r"do\(\)|don't\(\)|mul\(\d+,\d+\)").unwrap());
 
-#[aoc(day3, part1)]
 pub fn part1(input: &str) -> usize {
     input
         .lines()
@@ -29,7 +26,6 @@ pub fn part1(input: &str) -> usize {
         .sum()
 }
 
-#[aoc(day3, part2)]
 pub fn part2(input: &str) -> usize {
     let mut enabled = true;
     input
@@ -84,5 +80,21 @@ xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))
 ";
 
         assert_eq!(part2(example), 48);
+    }
+
+    #[test]
+    fn run_part1() {
+        let input = crate::utils::get_day_input!();
+        let output = part1(&input);
+        println!("Part 1: {}", output);
+        assert_eq!(output, 169021493);
+    }
+
+    #[test]
+    fn run_part2() {
+        let input = crate::utils::get_day_input!();
+        let output = part2(&input);
+        println!("Part 2: {}", output);
+        assert_eq!(output, 111762583);
     }
 }
