@@ -1,17 +1,19 @@
 use std::collections::{HashMap, HashSet};
 
+type Number = u32;
+
 struct Input {
     /// Each entry is the set of pages that **must** be before the key IF they are present in the update
-    rules: HashMap<u32, HashSet<u32>>,
-    updates: Vec<Vec<u32>>,
+    rules: HashMap<Number, HashSet<Number>>,
+    updates: Vec<Vec<Number>>,
 }
 
 fn parse_input(input: &str) -> Input {
     let (rules, lists) = input.split_once("\n\n").unwrap();
 
-    let rules: HashMap<u32, HashSet<u32>> =
+    let rules: HashMap<Number, HashSet<Number>> =
         rules.lines().fold(HashMap::new(), |mut rules, line| {
-            let (first, second): (u32, u32) = line
+            let (first, second): (Number, Number) = line
                 .split_once("|")
                 .map(|(a, b)| (a.parse().unwrap(), b.parse().unwrap()))
                 .unwrap();
@@ -21,19 +23,19 @@ fn parse_input(input: &str) -> Input {
             rules
         });
 
-    let updates: Vec<Vec<u32>> = lists
+    let updates: Vec<Vec<Number>> = lists
         .lines()
         .map(|line| {
             line.split(",")
                 .map(|n| n.parse().unwrap())
-                .collect::<Vec<u32>>()
+                .collect::<Vec<Number>>()
         })
         .collect();
 
     Input { rules, updates }
 }
 
-pub fn part1_first_implem(input: &str) -> u32 {
+pub fn part1_first_implem(input: &str) -> Number {
     let Input { rules, updates } = parse_input(input);
 
     updates.iter().fold(0, |sum, update| {
@@ -53,11 +55,11 @@ pub fn part1_first_implem(input: &str) -> u32 {
     })
 }
 
-pub fn part1(input: &str) -> u32 {
+pub fn part1(input: &str) -> Number {
     let Input { rules, updates } = parse_input(input);
 
     // Make a custom sort that respects the rules
-    let sorter = |a: &u32, b: &u32| {
+    let sorter = |a: &Number, b: &Number| {
         let Some(rule) = rules.get(a) else {
             return std::cmp::Ordering::Less;
         };
@@ -85,11 +87,11 @@ pub fn part1(input: &str) -> u32 {
         .sum()
 }
 
-pub fn part2(input: &str) -> u32 {
+pub fn part2(input: &str) -> Number {
     let Input { rules, updates } = parse_input(input);
 
     // Make a custom sort that respects the rules
-    let sorter = |a: &u32, b: &u32| {
+    let sorter = |a: &Number, b: &Number| {
         let Some(rule) = rules.get(a) else {
             return std::cmp::Ordering::Less;
         };
