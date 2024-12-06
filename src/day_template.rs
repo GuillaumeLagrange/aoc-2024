@@ -16,8 +16,8 @@ REPLACE_ME
 
     #[test]
     fn example() {
-        assert_eq!(part1(&EXAMPLE), 143);
-        assert_eq!(part2(&EXAMPLE), 123);
+        assert_eq!(part1(EXAMPLE), 0);
+        assert_eq!(part2(EXAMPLE), 0);
     }
 
     #[test]
