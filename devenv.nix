@@ -37,6 +37,9 @@
       # Add the day to the benches template
       sed -i "s/\(benches!(.*\));/\1, $DAY);/" ./benches/bench_days.rs
 
+      # Uncomment the day in the main file
+      sed -i "s/\/\/ $DAY =>/$DAY =>/" ./src/main.rs
+
       # Format everything
       cargo fmt
 

@@ -8,6 +8,8 @@ edition = "2021"
 itertools = "0.13.0"
 regex = "1.11.1"
 colored = "2.1.0"
+clap = { version = "4.5.23", features = ["derive"] }
+paste = "1.0.15"
 
 [dev-dependencies]
 criterion = { version = "2.7.2", package = "codspeed-criterion-compat", default-features = false }
