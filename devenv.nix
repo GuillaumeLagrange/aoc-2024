@@ -13,7 +13,7 @@
   ];
 
   scripts = {
-    new_day.exec = ''
+    day.exec = ''
       # Usage newday.sh <DAY>
 
       set -e
