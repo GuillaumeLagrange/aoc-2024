@@ -39,11 +39,21 @@ pub fn part1(input: &str) -> u64 {
             // Content is (operation, current_total, current_index)
             let mut operations_queue = VecDeque::with_capacity(4 * numbers.len());
 
-            operations_queue.push_back((Operations::Add, numbers[0] as u64, 0));
-            operations_queue.push_back((Operations::Multiply, numbers[0] as u64, 0));
+            operations_queue.push_back((
+                Operations::Add,
+                numbers[0] as u64,
+                0,
+                format!("{}", numbers[0]),
+            ));
+            operations_queue.push_back((
+                Operations::Multiply,
+                numbers[0] as u64,
+                0,
+                format!("{}", numbers[0]),
+            ));
 
             while !operations_queue.is_empty() {
-                let (operation, current_value, current_index) =
+                let (operation, current_value, current_index, history) =
                     operations_queue.pop_back().unwrap();
 
                 let next_index = current_index + 1;
@@ -58,17 +68,26 @@ pub fn part1(input: &str) -> u64 {
                     Operations::Multiply => current_value * numbers[next_index] as u64,
                 };
 
+                let history_string = format!("({history}) {operation} {}", numbers[next_index]);
+
                 if new_value == target {
-                    println!(
-                        "Found target: last operation: {current_value} {operation} {} = {target}",
-                        numbers[next_index]
-                    );
+                    println!("Found target: {history_string} = {target}",);
                     return target;
                 }
 
                 if new_value < target {
-                    operations_queue.push_back((Operations::Add, new_value, next_index));
-                    operations_queue.push_back((Operations::Multiply, new_value, next_index));
+                    operations_queue.push_back((
+                        Operations::Add,
+                        new_value,
+                        next_index,
+                        history_string.clone(),
+                    ));
+                    operations_queue.push_back((
+                        Operations::Multiply,
+                        new_value,
+                        next_index,
+                        history_string,
+                    ));
                 }
             }
 
