@@ -46,7 +46,7 @@ fn run_day(day: u8) {
         4 => run_day!(4),
         5 => run_day!(5),
         6 => run_day!(6),
-        // 7 => run_day!(7),
+        7 => run_day!(7),
         // 8 => run_day!(8),
         // 9 => run_day!(9),
         // 10 => run_day!(10),
