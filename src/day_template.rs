@@ -1,8 +1,10 @@
-pub fn part1(input: &str) -> u32 {
+type Num = u32;
+
+pub fn part1(input: &str) -> Num {
     0
 }
 
-pub fn part2(input: &str) -> usize {
+pub fn part2(input: &str) -> Num {
     0
 }
 
@@ -10,9 +12,9 @@ pub fn part2(input: &str) -> usize {
 mod tests {
     use super::*;
 
-    const EXAMPLE: &str = "\
-REPLACE_ME
-";
+    const EXAMPLE: &str = indoc::indoc! {"
+        REPLACE_ME
+"};
 
     #[test]
     fn example() {
