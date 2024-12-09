@@ -1,9 +1,9 @@
 pub fn part1(input: &str) -> u32 {
-    todo!()
+    0
 }
 
 pub fn part2(input: &str) -> usize {
-    todo!()
+    0
 }
 
 #[cfg(test)]
