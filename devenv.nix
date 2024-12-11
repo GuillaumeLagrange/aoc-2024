@@ -45,6 +45,16 @@
 
       echo "Bootstrap for day $1 complete!"
     '';
+
+    leaderboards.exec = ''
+      # Hardcoded list of IDs
+      ids=(1813799 207429 1893392)
+
+      # Loop through each ID and execute the command
+      for id in "''${ids[@]}"; do
+          aoc private-leaderboard "''${id}"
+      done
+    '';
   };
 
   # https://devenv.sh/languages/
