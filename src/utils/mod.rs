@@ -20,6 +20,18 @@ pub fn number_of_digits_u64(n: u64) -> u32 {
     (n as f64).log10().floor() as u32 + 1
 }
 
+pub trait CoordinateDiff<const N: usize> {
+    /// Does not check for out of bounds
+    fn coord_diff(&self, x: usize, y: usize) -> impl Iterator<Item = (usize, usize)>;
+}
+
+impl<const N: usize> CoordinateDiff<N> for [(i32, i32); N] {
+    fn coord_diff(&self, x: usize, y: usize) -> impl Iterator<Item = (usize, usize)> {
+        self.iter()
+            .map(move |(dx, dy)| ((x as i32 + dx) as usize, (y as i32 + dy) as usize))
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -37,5 +49,18 @@ mod tests {
         assert_eq!(number_of_digits_u64(10000000), 8);
         assert_eq!(number_of_digits_u64(100456000), 9);
         assert_eq!(number_of_digits_u64(1000001230), 10);
+    }
+
+    #[test]
+    fn coord_diff() {
+        let directions = [(0, 1), (1, 0), (0, -1), (-1, 0)];
+        itertools::assert_equal(
+            directions.coord_diff(1, 1),
+            vec![(1, 2), (2, 1), (1, 0), (0, 1)],
+        );
+        itertools::assert_equal(
+            directions.coord_diff(2, 1),
+            vec![(2, 2), (3, 1), (2, 0), (1, 1)],
+        );
     }
 }

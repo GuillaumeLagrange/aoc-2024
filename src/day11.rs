@@ -130,6 +130,6 @@ mod tests {
         let input = crate::utils::get_day_input!();
         let output = part2(&input);
         println!("Part 2: {}", output);
-        assert_eq!(output, 0);
+        assert_eq!(output, 241651071960597);
     }
 }
