@@ -1,44 +1,79 @@
-use std::collections::HashSet;
-
 type Num = u32;
 
 const GRID_SIZE: usize = 140 + 2;
 
 pub fn part1(input: &str) -> Num {
+    #[derive(Copy, Clone)]
+    struct Plot {
+        vegetable: u8,
+        in_a_region: bool,
+    }
+
     struct Region {
         perimeter: Num,
         area: Num,
     }
     let mut regions = Vec::<Region>::new();
 
-    let grid = [[b'.'; GRID_SIZE]; GRID_SIZE];
+    let mut grid = [[Plot {
+        vegetable: b'.',
+        in_a_region: false,
+    }; GRID_SIZE]; GRID_SIZE];
 
-    input
-        .lines()
-        .enumerate()
-        .flat_map(|(y, l)| {
-            l.bytes().enumerate().map(move |(x, b)| {
-                let top = grid[y - 1][x];
-                let left = grid[y][x - 1];
+    input.lines().enumerate().for_each(|(y, l)| {
+        l.bytes().enumerate().for_each(|(x, vegetable)| {
+            grid[x + 1][y + 1].vegetable = vegetable;
+        })
+    });
 
-                if b == top || b == left {
-                    // Region has already been accounted for
-                    return 0;
+    let mut sum = 0;
+    for x in 1..GRID_SIZE {
+        for y in 1..GRID_SIZE {
+            let first_plot = grid[y][x];
+
+            if first_plot.in_a_region || first_plot.vegetable == b'.' {
+                continue;
+            }
+
+            // We are exploring a new region
+            let mut region = Region {
+                perimeter: 0,
+                area: 0,
+            };
+
+            let mut queue = Vec::new();
+            queue.push((x, y));
+
+            while let Some((x, y)) = queue.pop() {
+                let plot = &mut grid[y][x];
+
+                if plot.vegetable != first_plot.vegetable {
+                    // This is not the same region, just count a border
+                    region.perimeter += 1;
+                    continue;
                 }
 
-                // We are exploring a new region
-                let mut region = HashSet::new();
-                region.insert((x, y));
-                let mut queue = Vec::new();
-                let right = grid[y][x + 1];
-                let bottom = grid[y + 1][x];
-                queue.push(right);
-                queue.push(bottom);
+                if plot.in_a_region {
+                    // We already counted this plot in the region
+                    continue;
+                }
 
-                0
-            })
-        })
-        .sum()
+                // This plot is part of the region
+                plot.in_a_region = true;
+                region.area += 1;
+
+                [(0, 1), (1, 0), (0, -1), (-1, 0)]
+                    .iter()
+                    .for_each(|(dx, dy)| {
+                        let (nx, ny) = (x as i32 + dx, y as i32 + dy);
+                        queue.push((nx as usize, ny as usize));
+                    });
+            }
+
+            sum += region.area * region.perimeter;
+        }
+    }
+    sum
 }
 
 pub fn part2(input: &str) -> Num {
@@ -90,7 +125,7 @@ MMMISSJEEE
         let input = crate::utils::get_day_input!();
         let output = part1(&input);
         println!("Part 1: {}", output);
-        assert_eq!(output, 0);
+        assert_eq!(output, 1464678);
     }
 
     #[test]
