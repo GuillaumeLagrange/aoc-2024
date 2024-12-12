@@ -13,8 +13,6 @@ pub fn part1(input: &str) -> Num {
         perimeter: Num,
         area: Num,
     }
-    let mut regions = Vec::<Region>::new();
-
     let mut grid = [[Plot {
         vegetable: b'.',
         in_a_region: false,
