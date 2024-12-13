@@ -52,7 +52,7 @@ fn run_day(day: u8) {
         10 => run_day!(10),
         11 => run_day!(11),
         12 => run_day!(12),
-        // 13 => run_day!(13),
+        13 => run_day!(13),
         // 14 => run_day!(14),
         // 15 => run_day!(15),
         // 16 => run_day!(16),
@@ -70,11 +70,14 @@ fn run_day(day: u8) {
 }
 
 fn run_all_days() {
-    println!("Running all days");
+    println!("Running all days\n");
 
+    let start = Instant::now();
     for day in 1..=N_DAYS {
         run_day(day);
     }
+    let elapsed = start.elapsed();
+    println!("Ran all days in {:.2?}", elapsed);
 }
 
 fn main() {
