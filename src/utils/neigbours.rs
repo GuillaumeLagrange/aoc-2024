@@ -3,9 +3,7 @@
 //     fn adjacent_positions(self, bound: Self) -> impl IntoIterator<Item = Self>;
 // }
 //
-// impl AdjacentPositions for (usize, usize) {
-//     fn adjacent_positions(self, bound: Self) -> impl IntoIterator<Item = (usize, usize)> {
-//         let directions = [
+// impl AdjacentPositions for (usize, usize) { fn adjacent_positions(self, bound: Self) -> impl IntoIterator<Item = (usize, usize)> { let directions = [
 //             (-1, -1),
 //             (-1, 0),
 //             (-1, 1),

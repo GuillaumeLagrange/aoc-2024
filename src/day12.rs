@@ -1,4 +1,4 @@
-use crate::utils::CoordinateDiff;
+use crate::utils::CoordinateAddIter;
 
 type Num = u32;
 
@@ -64,7 +64,7 @@ pub fn part1(input: &str) -> Num {
                 region.area += 1;
 
                 [(0, 1), (1, 0), (0, -1), (-1, 0)]
-                    .coord_diff(x, y)
+                    .coord_add_iter(x, y)
                     .for_each(|(dx, dy)| {
                         queue.push((dx, dy));
                     });
@@ -152,7 +152,7 @@ pub fn part2(input: &str) -> Num {
                     // Bottom left
                     (1, -1),
                 ]
-                .coord_diff(x, y)
+                .coord_add_iter(x, y)
                 .for_each(|(dx, dy)| {
                     if is_corner(first_plot.plant, &grid[dy][x], &grid[y][dx], &grid[dy][dx]) {
                         region.sides += 1;
@@ -169,7 +169,7 @@ pub fn part2(input: &str) -> Num {
                     // Top
                     (0, 1),
                 ]
-                .coord_diff(x, y)
+                .coord_add_iter(x, y)
                 .for_each(|(dx, dy)| {
                     queue.push((dx, dy));
                 });
