@@ -1,0 +1,10 @@
+Init: A = X, B = 0, C = 0
+
+- 2 4: B = A mod 8
+- 1 1: B = B XOR 1  // B = (A MOD 8) XOR 1
+- 7 5: C = A >> B   // C = A >> ((A MOD 8) XOR 1)
+- 1 5: B = B XOR 5  // B = ((A MOD 8) XOR 1) XOR 5
+- 0 3: A = A >> 3   // A = A >> 3
+- 4 3: B = B XOR C  // B = (((A MOD 8) XOR 1) XOR 5) XOR (A >> ((A MOD 8) XOR 1))
+- 5 5: PRINT B      // PRINT B
+- 3 0: JUMP TO 0    // JUMP TO 0 IF A != 0
