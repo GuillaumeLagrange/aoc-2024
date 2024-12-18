@@ -39,16 +39,17 @@ fn run_day(day: u8) {
         return;
     }
 
+    #[allow(clippy::zero_prefixed_literal)]
     match day {
-        1 => run_day!(1),
-        2 => run_day!(2),
-        3 => run_day!(3),
-        4 => run_day!(4),
-        5 => run_day!(5),
-        6 => run_day!(6),
-        7 => run_day!(7),
-        8 => run_day!(8),
-        9 => run_day!(9),
+        1 => run_day!(01),
+        2 => run_day!(02),
+        3 => run_day!(03),
+        4 => run_day!(04),
+        5 => run_day!(05),
+        6 => run_day!(06),
+        7 => run_day!(07),
+        8 => run_day!(08),
+        9 => run_day!(09),
         10 => run_day!(10),
         11 => run_day!(11),
         12 => run_day!(12),
@@ -57,7 +58,7 @@ fn run_day(day: u8) {
         // 15 => run_day!(15),
         16 => run_day!(16),
         17 => run_day!(17),
-        // 18 => run_day!(18),
+        18 => run_day!(18),
         // 19 => run_day!(19),
         // 20 => run_day!(20),
         // 21 => run_day!(21),

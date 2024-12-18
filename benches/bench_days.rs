@@ -1,3 +1,4 @@
+#![allow(clippy::zero_prefixed_literal)]
 use criterion::{criterion_group, criterion_main, Criterion};
 use paste::paste;
 
@@ -38,4 +39,4 @@ macro_rules! benches {
     };
 }
 
-benches!(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17); // Add more days here
+benches!(01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, 12, 13, 14, 15, 16, 17, 18); // Add more days here

@@ -7,7 +7,7 @@ macro_rules! get_day_input {
             .and_then(|s| s.strip_suffix(".rs"))
             .and_then(|s| s.parse().ok())
             .expect("unable to parse the day");
-        let path = format!("./inputs/day{}.txt", day);
+        let path = format!("./inputs/day{:0>2}.txt", day);
         let data = std::fs::read_to_string(path).expect("Could not open file");
         data
     }};
