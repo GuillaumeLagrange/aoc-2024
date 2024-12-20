@@ -1,4 +1,4 @@
-mod utils;
+pub mod utils;
 
 // #[allow(dead_code, unused_variables)]
 // mod day_template;
@@ -22,3 +22,4 @@ pub mod day16;
 pub mod day17;
 pub mod day18;
 pub mod day19;
+pub mod day20;

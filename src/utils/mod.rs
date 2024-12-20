@@ -1,3 +1,7 @@
+pub use manhattan::*;
+
+mod manhattan;
+
 #[macro_export]
 macro_rules! get_day_input {
     () => {{
@@ -31,6 +35,8 @@ impl<const N: usize> CoordinateAddIter<N> for [(i32, i32); N] {
             .map(move |(dx, dy)| ((x as i32 + dx) as usize, (y as i32 + dy) as usize))
     }
 }
+
+pub const CARDINAL_DIRECTIONS: [(i32, i32); 4] = [(0, 1), (1, 0), (0, -1), (-1, 0)];
 
 pub trait CoordinateAdd {
     /// Does not check for out of bounds
