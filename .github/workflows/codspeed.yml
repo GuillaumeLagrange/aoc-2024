@@ -28,6 +28,10 @@ jobs:
         run: |
           mkdir -p inputs
           for i in {1..25}; do
+            # Add a leading zero to single digit days
+            if [ $i -lt 10 ]; then
+              i="0$i"
+            fi
             aoc download -I -i inputs/day$i.txt --year 2024 -d $i || true
           done
 
